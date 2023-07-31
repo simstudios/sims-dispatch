@@ -80,3 +80,14 @@ AddEventHandler("sims-dispatch:sendBankRobbery", function(coords, id)
         end
     end
 end)
+RegisterServerEvent("sims-dispatch:sendPanicButton")
+AddEventHandler("sims-dispatch:sendPanicButton", function(coords, id)
+    local _source = source
+    local xPlayers = ESX.GetPlayers()
+    for i = 1, #xPlayers do
+        local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+        if xPlayer.job.name == Config.PoliceJob then
+            TriggerClientEvent("sims-dispatch:alertPanicButton", -1, coords, id)
+        end
+    end
+end)
